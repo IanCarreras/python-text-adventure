@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -37,8 +38,13 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
+def print_controls():
+    print('\nControls:')
+    print(' n for north \n s for south \n e for east \n w for west')
+    print(' q to exit game')
 
+# Make a new player object that is currently in the 'outside' room.
+player = Player('You', 'outside')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +55,27 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+print('\n______ Treasure Cave 1 ______ \nFind the treasure and it could be yours')
+print_controls()
+player.name = input('\nEnter your name: ')
+choice = 0
+
+
+while choice != 'q':
+    print(f'\nYou are standing at the {room[player.room].name} \n{room[player.room].description}')
+    choice = input('\nChoose a direction: ')
+    try:
+        if (choice == 'n'):
+            player.room = room[player.room].n_to.name
+
+        if (choice == 's'):
+            player.room = room[player.room].s_to.name
+
+        if (choice == 'e'):
+            player.room = room[player.room].e_to.name
+
+        if (choice == 'w'):
+            player.room = room[player.room].w_to.name
+    except ValueError:
+        print_controls()
