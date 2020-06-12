@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -64,38 +65,50 @@ choices = ['n', 's', 'e', 'w', 'c', 'r', 'q']
 
 print('\n______ Treasure Cave 1 ______ \nFind the treasure and it could be yours')
 print_controls()
-player.name = input('\nEnter your name: ')
+# player.name = input('\nEnter your name: ')
 choice = 0
+
+lantern = Item('lantern', 'This lantern will help light the way')
+room['overlook'].add_item(lantern)
+
 
 print(f'\n  You are standing at the {room[player.location].name} \n\n  {room[player.location].description}')
 
 while choice != 'q':
     choice = input('\nChoose a direction: ')
     try:
-        if (choice == 'n'):
+        if choice == 'n':
             player.location = room[player.location].n_to
             print(f'\n  You walk north into the {room[player.location].name} \n\n  {room[player.location].description}')
+            if room[player.location].items is not None:
+                print(f'\n  You see a {room[player.location].items[0]}')
 
-        if (choice == 's'):
+        if choice == 's':
             player.location = room[player.location].s_to
             print(f'\n  You walk south into the {room[player.location].name} \n\n  {room[player.location].description}')
+            if room[player.location].items is not None:
+                print(f'\n  You see a {room[player.location].items[0]}')
         
-        if (choice == 'e'):
+        if choice == 'e':
             player.location = room[player.location].e_to
             print(f'\n  You walk east into the {room[player.location].name} \n\n   {room[player.location].description}')
+            if room[player.location].items is not None:
+                print(f'\n  You see a {room[player.location].items[0]}')
         
-        if (choice == 'w'):
+        if choice == 'w':
             player.location = room[player.location].w_to
             print(f'\n  You walk west into the {room[player.location].name} \n\n   {room[player.location].description}')
+            if room[player.location].items is not None:
+                print(f'\n  You see a {room[player.location].items[0]}')
 
-        if (choice == 'c'):
+        if choice == 'c':
             print_controls()
 
-        if (choice == 'r'):
-            print(f'\n You are in the {room[player.location].name} \n\n   {room[player.location].description}')
+        if choice == 'r':
+            print(f'\n  You are in the {room[player.location].name} \n\n   {room[player.location].description}')
 
-        if (choice not in choices):
-            print('\nThat is not a direction.  Type c to see the controls')
+        if choice not in choices:
+            print('\n   That is not a direction.  Type c to see the controls')
 
     except:
-        print("\nYou can't go that way")
+        print("\n   You can't go that way")
