@@ -71,7 +71,6 @@ choice = 0
 lantern = Item('lantern', 'This lantern will help light the way')
 room['overlook'].add_item(lantern)
 
-
 print(f'\n  You are standing at the {room[player.location].name} \n\n  {room[player.location].description}')
 
 while choice != 'q':
@@ -80,25 +79,25 @@ while choice != 'q':
         if choice == 'n':
             player.location = room[player.location].n_to
             print(f'\n  You walk north into the {room[player.location].name} \n\n  {room[player.location].description}')
-            if room[player.location].items is not None:
+            if len(room[player.location].items) is not 0:
                 print(f'\n  You see a {room[player.location].items[0]}')
 
         if choice == 's':
             player.location = room[player.location].s_to
             print(f'\n  You walk south into the {room[player.location].name} \n\n  {room[player.location].description}')
-            if room[player.location].items is not None:
+            if len(room[player.location].items) is not 0:
                 print(f'\n  You see a {room[player.location].items[0]}')
         
         if choice == 'e':
             player.location = room[player.location].e_to
             print(f'\n  You walk east into the {room[player.location].name} \n\n   {room[player.location].description}')
-            if room[player.location].items is not None:
+            if len(room[player.location].items) is not 0:
                 print(f'\n  You see a {room[player.location].items[0]}')
         
         if choice == 'w':
             player.location = room[player.location].w_to
             print(f'\n  You walk west into the {room[player.location].name} \n\n   {room[player.location].description}')
-            if room[player.location].items is not None:
+            if len(room[player.location].items) is not 0:
                 print(f'\n  You see a {room[player.location].items[0]}')
 
         if choice == 'c':
